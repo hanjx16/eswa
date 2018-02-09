@@ -1,0 +1,247 @@
+\begin{thebibliography}{23}
+\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+\providecommand{\url}[1]{\texttt{#1}}
+\providecommand{\href}[2]{#2}
+\providecommand{\path}[1]{#1}
+\providecommand{\DOIprefix}{doi:}
+\providecommand{\ArXivprefix}{arXiv:}
+\providecommand{\URLprefix}{URL: }
+\providecommand{\Pubmedprefix}{pmid:}
+\providecommand{\doi}[1]{\href{http://dx.doi.org/#1}{\path{#1}}}
+\providecommand{\Pubmed}[1]{\href{pmid:#1}{\path{#1}}}
+\providecommand{\bibinfo}[2]{#2}
+\ifx\xfnm\relax \def\xfnm[#1]{\unskip,\space#1}\fi
+%Type = Inproceedings
+\bibitem[{Agrawal et~al.(2009)Agrawal, Gollapudi, Halverson \&
+  Ieong}]{agrawal2009diversifying}
+\bibinfo{author}{Agrawal, R.}, \bibinfo{author}{Gollapudi, S.},
+  \bibinfo{author}{Halverson, A.}, \& \bibinfo{author}{Ieong, S.}
+  (\bibinfo{year}{2009}).
+\newblock \bibinfo{title}{Diversifying search results}.
+\newblock In {\it \bibinfo{booktitle}{Proceedings of the Second ACM
+  International Conference on Web Search and Data Mining}\/} (pp.
+  \bibinfo{pages}{5--14}).
+\newblock \bibinfo{organization}{ACM}.
+%Type = Inproceedings
+\bibitem[{Carbonell \& Goldstein(1998)}]{carbonell1998use}
+\bibinfo{author}{Carbonell, J.}, \& \bibinfo{author}{Goldstein, J.}
+  (\bibinfo{year}{1998}).
+\newblock \bibinfo{title}{The use of mmr, diversity-based reranking for
+  reordering documents and producing summaries}.
+\newblock In {\it \bibinfo{booktitle}{Proceedings of the 21st annual
+  international ACM SIGIR conference on Research and development in information
+  retrieval}\/} (pp. \bibinfo{pages}{335--336}).
+\newblock \bibinfo{organization}{ACM}.
+%Type = Inproceedings
+\bibitem[{Chapelle et~al.(2009)Chapelle, Metlzer, Zhang \&
+  Grinspan}]{chapelle2009expected}
+\bibinfo{author}{Chapelle, O.}, \bibinfo{author}{Metlzer, D.},
+  \bibinfo{author}{Zhang, Y.}, \& \bibinfo{author}{Grinspan, P.}
+  (\bibinfo{year}{2009}).
+\newblock \bibinfo{title}{Expected reciprocal rank for graded relevance}.
+\newblock In {\it \bibinfo{booktitle}{Proceedings of the 18th ACM conference on
+  Information and knowledge management}\/} (pp. \bibinfo{pages}{621--630}).
+\newblock \bibinfo{organization}{ACM}.
+%Type = Inproceedings
+\bibitem[{Clarke et~al.(2009{\natexlab{a}})Clarke, Craswell \&
+  Soboroff}]{clarke2009preliminary}
+\bibinfo{author}{Clarke, C.~L.}, \bibinfo{author}{Craswell, N.}, \&
+  \bibinfo{author}{Soboroff, I.} (\bibinfo{year}{2009}{\natexlab{a}}).
+\newblock \bibinfo{title}{Preliminary report on the trec 2009 web track}.
+\newblock In {\it \bibinfo{booktitle}{Proc. of TREC}\/}.
+%Type = Inproceedings
+\bibitem[{Clarke et~al.(2008)Clarke, Kolla, Cormack, Vechtomova, Ashkan,
+  B{\"u}ttcher \& MacKinnon}]{clarke2008novelty}
+\bibinfo{author}{Clarke, C.~L.}, \bibinfo{author}{Kolla, M.},
+  \bibinfo{author}{Cormack, G.~V.}, \bibinfo{author}{Vechtomova, O.},
+  \bibinfo{author}{Ashkan, A.}, \bibinfo{author}{B{\"u}ttcher, S.}, \&
+  \bibinfo{author}{MacKinnon, I.} (\bibinfo{year}{2008}).
+\newblock \bibinfo{title}{Novelty and diversity in information retrieval
+  evaluation}.
+\newblock In {\it \bibinfo{booktitle}{Proceedings of the 31st annual
+  international ACM SIGIR conference on Research and development in information
+  retrieval}\/} (pp. \bibinfo{pages}{659--666}).
+\newblock \bibinfo{organization}{ACM}.
+%Type = Book
+\bibitem[{Clarke et~al.(2009{\natexlab{b}})Clarke, Kolla \&
+  Vechtomova}]{clarke2009effectiveness}
+\bibinfo{author}{Clarke, C.~L.}, \bibinfo{author}{Kolla, M.}, \&
+  \bibinfo{author}{Vechtomova, O.} (\bibinfo{year}{2009}{\natexlab{b}}).
+\newblock {\it \bibinfo{title}{An effectiveness measure for ambiguous and
+  underspecified queries}\/}.
+\newblock \bibinfo{publisher}{Springer}.
+%Type = Inproceedings
+\bibitem[{Dang \& Croft(2012)}]{dang2012diversity}
+\bibinfo{author}{Dang, V.}, \& \bibinfo{author}{Croft, W.~B.}
+  (\bibinfo{year}{2012}).
+\newblock \bibinfo{title}{Diversity by proportionality: an election-based
+  approach to search result diversification}.
+\newblock In {\it \bibinfo{booktitle}{Proceedings of the 35th international ACM
+  SIGIR conference on Research and development in information retrieval}\/}
+  (pp. \bibinfo{pages}{65--74}).
+\newblock \bibinfo{organization}{ACM}.
+%Type = Article
+\bibitem[{Drosou \& Pitoura(2010)}]{drosou2010search}
+\bibinfo{author}{Drosou, M.}, \& \bibinfo{author}{Pitoura, E.}
+  (\bibinfo{year}{2010}).
+\newblock \bibinfo{title}{Search result diversification}.
+\newblock {\it \bibinfo{journal}{ACM SIGMOD Record}\/},  {\it
+  \bibinfo{volume}{39}\/}, \bibinfo{pages}{41--47}.
+%Type = Inproceedings
+\bibitem[{Fetterly et~al.(2004)Fetterly, Manasse \& Najork}]{fetterly2004spam}
+\bibinfo{author}{Fetterly, D.}, \bibinfo{author}{Manasse, M.}, \&
+  \bibinfo{author}{Najork, M.} (\bibinfo{year}{2004}).
+\newblock \bibinfo{title}{Spam, damn spam, and statistics: Using statistical
+  analysis to locate spam web pages}.
+\newblock In {\it \bibinfo{booktitle}{Proceedings of the 7th International
+  Workshop on the Web and Databases: colocated with ACM SIGMOD/PODS 2004}\/}
+  (pp. \bibinfo{pages}{1--6}).
+\newblock \bibinfo{organization}{ACM}.
+%Type = Misc
+\bibitem[{Hu \& et~al.(2015)}]{Hu15searchresult}
+\bibinfo{author}{Hu, S.}, \& \bibinfo{author}{et~al.} (\bibinfo{year}{2015}).
+\newblock \bibinfo{title}{Search result diversification based on hierarchical
+  intents}.
+%Type = Inproceedings
+\bibitem[{Jansen et~al.(1998)Jansen, Spink, Bateman \&
+  Saracevic}]{jansen1998real}
+\bibinfo{author}{Jansen, B.~J.}, \bibinfo{author}{Spink, A.},
+  \bibinfo{author}{Bateman, J.}, \& \bibinfo{author}{Saracevic, T.}
+  (\bibinfo{year}{1998}).
+\newblock \bibinfo{title}{Real life information retrieval: A study of user
+  queries on the web}.
+\newblock In {\it \bibinfo{booktitle}{ACM SIGIR Forum}\/} (pp.
+  \bibinfo{pages}{5--17}).
+\newblock \bibinfo{organization}{ACM} volume~\bibinfo{volume}{32}.
+%Type = Inproceedings
+\bibitem[{Kurland \& Domshlak(2008)}]{kurland2008rank}
+\bibinfo{author}{Kurland, O.}, \& \bibinfo{author}{Domshlak, C.}
+  (\bibinfo{year}{2008}).
+\newblock \bibinfo{title}{A rank-aggregation approach to searching for optimal
+  query-specific clusters}.
+\newblock In {\it \bibinfo{booktitle}{Proceedings of the 31st annual
+  international ACM SIGIR conference on Research and development in information
+  retrieval}\/} (pp. \bibinfo{pages}{547--554}).
+\newblock \bibinfo{organization}{ACM}.
+%Type = Book
+\bibitem[{Marden(1996)}]{marden1996analyzing}
+\bibinfo{author}{Marden, J.~I.} (\bibinfo{year}{1996}).
+\newblock {\it \bibinfo{title}{Analyzing and modeling rank data}\/}.
+\newblock \bibinfo{publisher}{CRC Press}.
+%Type = Inproceedings
+\bibitem[{Raman et~al.(2013)Raman, Bennett \&
+  Collins-Thompson}]{raman2013toward}
+\bibinfo{author}{Raman, K.}, \bibinfo{author}{Bennett, P.~N.}, \&
+  \bibinfo{author}{Collins-Thompson, K.} (\bibinfo{year}{2013}).
+\newblock \bibinfo{title}{Toward whole-session relevance: exploring intrinsic
+  diversity in web search}.
+\newblock In {\it \bibinfo{booktitle}{Proceedings of the 36th international ACM
+  SIGIR conference on Research and development in information retrieval}\/}
+  (pp. \bibinfo{pages}{463--472}).
+\newblock \bibinfo{organization}{ACM}.
+%Type = Inproceedings
+\bibitem[{Santos et~al.(2010{\natexlab{a}})Santos, Macdonald \&
+  Ounis}]{santos2010exploiting}
+\bibinfo{author}{Santos, R.~L.}, \bibinfo{author}{Macdonald, C.}, \&
+  \bibinfo{author}{Ounis, I.} (\bibinfo{year}{2010}{\natexlab{a}}).
+\newblock \bibinfo{title}{Exploiting query reformulations for web search result
+  diversification}.
+\newblock In {\it \bibinfo{booktitle}{Proceedings of the 19th international
+  conference on World wide web}\/} (pp. \bibinfo{pages}{881--890}).
+\newblock \bibinfo{organization}{ACM}.
+%Type = Inproceedings
+\bibitem[{Santos et~al.(2010{\natexlab{b}})Santos, Macdonald \&
+  Ounis}]{Santos:2010:EQR:1772690.1772780}
+\bibinfo{author}{Santos, R.~L.}, \bibinfo{author}{Macdonald, C.}, \&
+  \bibinfo{author}{Ounis, I.} (\bibinfo{year}{2010}{\natexlab{b}}).
+\newblock \bibinfo{title}{Exploiting query reformulations for web search result
+  diversification}.
+\newblock In {\it \bibinfo{booktitle}{Proceedings of the 19th International
+  Conference on World Wide Web}\/} WWW '10 (pp. \bibinfo{pages}{881--890}).
+\newblock \bibinfo{address}{New York, NY, USA}: \bibinfo{publisher}{ACM}.
+\newblock \URLprefix \url{http://doi.acm.org/10.1145/1772690.1772780}.
+  \DOIprefix\doi{10.1145/1772690.1772780}.
+%Type = Inproceedings
+\bibitem[{Santos et~al.(2010{\natexlab{c}})Santos, Peng, Macdonald \&
+  Ounis}]{10.1007/978-3-642-12275-0_11}
+\bibinfo{author}{Santos, R. L.~T.}, \bibinfo{author}{Peng, J.},
+  \bibinfo{author}{Macdonald, C.}, \& \bibinfo{author}{Ounis, I.}
+  (\bibinfo{year}{2010}{\natexlab{c}}).
+\newblock \bibinfo{title}{Explicit search result diversification through
+  sub-queries}.
+\newblock In \bibinfo{editor}{C.~Gurrin}, \bibinfo{editor}{Y.~He},
+  \bibinfo{editor}{G.~Kazai}, \bibinfo{editor}{U.~Kruschwitz},
+  \bibinfo{editor}{S.~Little}, \bibinfo{editor}{T.~Roelleke},
+  \bibinfo{editor}{S.~R{\"u}ger}, \& \bibinfo{editor}{K.~van Rijsbergen}
+  (Eds.), {\it \bibinfo{booktitle}{Advances in Information Retrieval}\/} (pp.
+  \bibinfo{pages}{87--99}).
+\newblock \bibinfo{address}{Berlin, Heidelberg}: \bibinfo{publisher}{Springer
+  Berlin Heidelberg}.
+%Type = Inproceedings
+\bibitem[{Vargas et~al.(2012)Vargas, Castells \& Vallet}]{vargas2012explicit}
+\bibinfo{author}{Vargas, S.}, \bibinfo{author}{Castells, P.}, \&
+  \bibinfo{author}{Vallet, D.} (\bibinfo{year}{2012}).
+\newblock \bibinfo{title}{Explicit relevance models in intent-oriented
+  information retrieval diversification}.
+\newblock In {\it \bibinfo{booktitle}{Proceedings of the 35th international ACM
+  SIGIR conference on Research and development in information retrieval}\/}
+  (pp. \bibinfo{pages}{75--84}).
+\newblock \bibinfo{organization}{ACM}.
+%Type = Inproceedings
+\bibitem[{Wang et~al.(2016)Wang, Dou, Sakai \&
+  Wen}]{Wang:2016:ESR:2911451.2911497}
+\bibinfo{author}{Wang, X.}, \bibinfo{author}{Dou, Z.}, \bibinfo{author}{Sakai,
+  T.}, \& \bibinfo{author}{Wen, J.-R.} (\bibinfo{year}{2016}).
+\newblock \bibinfo{title}{Evaluating search result diversity using intent
+  hierarchies}.
+\newblock In {\it \bibinfo{booktitle}{Proceedings of the 39th International ACM
+  SIGIR Conference on Research and Development in Information Retrieval}\/}
+  SIGIR '16 (pp. \bibinfo{pages}{415--424}).
+\newblock \bibinfo{address}{New York, NY, USA}: \bibinfo{publisher}{ACM}.
+\newblock \URLprefix \url{http://doi.acm.org/10.1145/2911451.2911497}.
+  \DOIprefix\doi{10.1145/2911451.2911497}.
+%Type = Inproceedings
+\bibitem[{Yu et~al.(2017)Yu, Jatowt, Blanco, Joho, Jose, Chen \&
+  Yuan}]{Yu:2017:CIL:3018661.3018710}
+\bibinfo{author}{Yu, H.-T.}, \bibinfo{author}{Jatowt, A.},
+  \bibinfo{author}{Blanco, R.}, \bibinfo{author}{Joho, H.},
+  \bibinfo{author}{Jose, J.}, \bibinfo{author}{Chen, L.}, \&
+  \bibinfo{author}{Yuan, F.} (\bibinfo{year}{2017}).
+\newblock \bibinfo{title}{A concise integer linear programming formulation for
+  implicit search result diversification}.
+\newblock In {\it \bibinfo{booktitle}{Proceedings of the Tenth ACM
+  International Conference on Web Search and Data Mining}\/} WSDM '17 (pp.
+  \bibinfo{pages}{191--200}).
+\newblock \bibinfo{address}{New York, NY, USA}: \bibinfo{publisher}{ACM}.
+\newblock \URLprefix \url{http://doi.acm.org/10.1145/3018661.3018710}.
+  \DOIprefix\doi{10.1145/3018661.3018710}.
+%Type = Inproceedings
+\bibitem[{Yue \& Joachims(2008)}]{yue2008predicting}
+\bibinfo{author}{Yue, Y.}, \& \bibinfo{author}{Joachims, T.}
+  (\bibinfo{year}{2008}).
+\newblock \bibinfo{title}{Predicting diverse subsets using structural svms}.
+\newblock In {\it \bibinfo{booktitle}{Proceedings of the 25th international
+  conference on Machine learning}\/} (pp. \bibinfo{pages}{1224--1231}).
+\newblock \bibinfo{organization}{ACM}.
+%Type = Inproceedings
+\bibitem[{Zhai et~al.(2003)Zhai, Cohen \& Lafferty}]{zhai2003beyond}
+\bibinfo{author}{Zhai, C.~X.}, \bibinfo{author}{Cohen, W.~W.}, \&
+  \bibinfo{author}{Lafferty, J.} (\bibinfo{year}{2003}).
+\newblock \bibinfo{title}{Beyond independent relevance: methods and evaluation
+  metrics for subtopic retrieval}.
+\newblock In {\it \bibinfo{booktitle}{Proceedings of the 26th annual
+  international ACM SIGIR conference on Research and development in informaion
+  retrieval}\/} (pp. \bibinfo{pages}{10--17}).
+\newblock \bibinfo{organization}{ACM}.
+%Type = Inproceedings
+\bibitem[{Zhu et~al.(2014)Zhu, Lan, Guo, Cheng \& Niu}]{zhu2014learning}
+\bibinfo{author}{Zhu, Y.}, \bibinfo{author}{Lan, Y.}, \bibinfo{author}{Guo,
+  J.}, \bibinfo{author}{Cheng, X.}, \& \bibinfo{author}{Niu, S.}
+  (\bibinfo{year}{2014}).
+\newblock \bibinfo{title}{Learning for search result diversification}.
+\newblock In {\it \bibinfo{booktitle}{Proceedings of the 37th international ACM
+  SIGIR conference on Research \& development in information retrieval}\/} (pp.
+  \bibinfo{pages}{293--302}).
+\newblock \bibinfo{organization}{ACM}.
+
+\end{thebibliography}
