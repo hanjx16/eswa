@@ -1,4 +1,4 @@
-\begin{thebibliography}{23}
+\begin{thebibliography}{28}
 \expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
 \providecommand{\url}[1]{\texttt{#1}}
 \providecommand{\href}[2]{#2}
@@ -114,6 +114,26 @@
   \bibinfo{pages}{5--17}).
 \newblock \bibinfo{organization}{ACM} volume~\bibinfo{volume}{32}.
 %Type = Inproceedings
+\bibitem[{Kim \& Croft(2015)}]{Kim:2015:IPS:2808194.2809455}
+\bibinfo{author}{Kim, Y.}, \& \bibinfo{author}{Croft, W.~B.}
+  (\bibinfo{year}{2015}).
+\newblock \bibinfo{title}{Improving patent search by search result
+  diversification}.
+\newblock In {\it \bibinfo{booktitle}{Proceedings of the 2015 International
+  Conference on The Theory of Information Retrieval}\/} ICTIR '15 (pp.
+  \bibinfo{pages}{201--210}).
+\newblock \bibinfo{address}{New York, NY, USA}: \bibinfo{publisher}{ACM}.
+\newblock \URLprefix \url{http://doi.acm.org/10.1145/2808194.2809455}.
+  \DOIprefix\doi{10.1145/2808194.2809455}.
+%Type = Article
+\bibitem[{Koniaris et~al.(2017)Koniaris, Anagnostopoulos \&
+  Vassiliou}]{a10010022}
+\bibinfo{author}{Koniaris, M.}, \bibinfo{author}{Anagnostopoulos, I.}, \&
+  \bibinfo{author}{Vassiliou, Y.} (\bibinfo{year}{2017}).
+\newblock \bibinfo{title}{Evaluation of diversification techniques for legal
+  information retrieval}.
+\newblock {\it \bibinfo{journal}{Algorithms}\/},  {\it \bibinfo{volume}{10}\/}.
+%Type = Inproceedings
 \bibitem[{Kurland \& Domshlak(2008)}]{kurland2008rank}
 \bibinfo{author}{Kurland, O.}, \& \bibinfo{author}{Domshlak, C.}
   (\bibinfo{year}{2008}).
@@ -178,6 +198,14 @@
 \newblock \bibinfo{address}{Berlin, Heidelberg}: \bibinfo{publisher}{Springer
   Berlin Heidelberg}.
 %Type = Inproceedings
+\bibitem[{Ullah et~al.(2016)Ullah, Shajalal, Chy \& Aono}]{Ullah2016QuerySM}
+\bibinfo{author}{Ullah, M.~Z.}, \bibinfo{author}{Shajalal, M.},
+  \bibinfo{author}{Chy, A.~N.}, \& \bibinfo{author}{Aono, M.}
+  (\bibinfo{year}{2016}).
+\newblock \bibinfo{title}{Query subtopic mining exploiting word embedding for
+  search result diversification}.
+\newblock In {\it \bibinfo{booktitle}{AIRS}\/}.
+%Type = Inproceedings
 \bibitem[{Vargas et~al.(2012)Vargas, Castells \& Vallet}]{vargas2012explicit}
 \bibinfo{author}{Vargas, S.}, \bibinfo{author}{Castells, P.}, \&
   \bibinfo{author}{Vallet, D.} (\bibinfo{year}{2012}).
@@ -200,6 +228,34 @@
 \newblock \bibinfo{address}{New York, NY, USA}: \bibinfo{publisher}{ACM}.
 \newblock \URLprefix \url{http://doi.acm.org/10.1145/2911451.2911497}.
   \DOIprefix\doi{10.1145/2911451.2911497}.
+%Type = Inproceedings
+\bibitem[{Xia et~al.(2015)Xia, Xu, Lan, Guo \&
+  Cheng}]{Xia:2015:LMM:2766462.2767710}
+\bibinfo{author}{Xia, L.}, \bibinfo{author}{Xu, J.}, \bibinfo{author}{Lan, Y.},
+  \bibinfo{author}{Guo, J.}, \& \bibinfo{author}{Cheng, X.}
+  (\bibinfo{year}{2015}).
+\newblock \bibinfo{title}{Learning maximal marginal relevance model via
+  directly optimizing diversity evaluation measures}.
+\newblock In {\it \bibinfo{booktitle}{Proceedings of the 38th International ACM
+  SIGIR Conference on Research and Development in Information Retrieval}\/}
+  SIGIR '15 (pp. \bibinfo{pages}{113--122}).
+\newblock \bibinfo{address}{New York, NY, USA}: \bibinfo{publisher}{ACM}.
+\newblock \URLprefix \url{http://doi.acm.org/10.1145/2766462.2767710}.
+  \DOIprefix\doi{10.1145/2766462.2767710}.
+%Type = Inproceedings
+\bibitem[{Xia et~al.(2016)Xia, Xu, Lan, Guo \&
+  Cheng}]{Xia:2016:MDN:2911451.2911498}
+\bibinfo{author}{Xia, L.}, \bibinfo{author}{Xu, J.}, \bibinfo{author}{Lan, Y.},
+  \bibinfo{author}{Guo, J.}, \& \bibinfo{author}{Cheng, X.}
+  (\bibinfo{year}{2016}).
+\newblock \bibinfo{title}{Modeling document novelty with neural tensor network
+  for search result diversification}.
+\newblock In {\it \bibinfo{booktitle}{Proceedings of the 39th International ACM
+  SIGIR Conference on Research and Development in Information Retrieval}\/}
+  SIGIR '16 (pp. \bibinfo{pages}{395--404}).
+\newblock \bibinfo{address}{New York, NY, USA}: \bibinfo{publisher}{ACM}.
+\newblock \URLprefix \url{http://doi.acm.org/10.1145/2911451.2911498}.
+  \DOIprefix\doi{10.1145/2911451.2911498}.
 %Type = Inproceedings
 \bibitem[{Yu et~al.(2017)Yu, Jatowt, Blanco, Joho, Jose, Chen \&
   Yuan}]{Yu:2017:CIL:3018661.3018710}
