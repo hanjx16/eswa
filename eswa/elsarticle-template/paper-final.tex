@@ -37,7 +37,7 @@
 %\usepackage{numcompress}\bibliographystyle{model3-num-names}
 
 %% Vancouver name/year
-%\usepackage{numcompress}\bibliographystyle{model4-names}\biboptions{authoryear}
+\usepackage{numcompress}\bibliographystyle{model4-names}\biboptions{authoryear}
 
 %% APA style
 %\bibliographystyle{model5-names}\biboptions{authoryear}
@@ -102,8 +102,8 @@ There are many ambiguous queries in search system. The keyword \textbf{apple} ma
 
 
 \revised{
-	The existing diversification approaches have been categorized as either implicit approaches or explicit approaches. The implicit approaches assume each document representing its own aspect and promote diversity by selecting documents for different aspects based on the difference of their vocabulary (\cite{carbonell1998use}). It is a less effective model for the reason that it cannot express the inherent meaning well (\cite{agrawal2009diversifying,zhai2003beyond}). 
-	The explicit approaches are proposed to overcome the weakness. They explicitly formalize the aspects underlying a query and select documents that cover different aspects. The xQuAD and PM2 are classic explicit models (\cite{santos2010exploiting,dang2012diversity}).
+	The existing diversification approaches have been categorized as either implicit approaches or explicit approaches. The implicit approaches assume each document representing its own aspect and promote diversity by selecting documents for different aspects based on the difference of their vocabulary \cite{carbonell1998use}. It is a less effective model for the reason that it cannot express the inherent meaning well \cite{agrawal2009diversifying,zhai2003beyond}. 
+	The explicit approaches are proposed to overcome the weakness. They explicitly formalize the aspects underlying a query and select documents that cover different aspects. The xQuAD and PM2 are classic explicit models \cite{santos2010exploiting,dang2012diversity}.
 	But they just utilize a predefined function to calculate the diversity score based on query aspects. It is subjective and hard to reach optimal result.}
 
 
@@ -111,13 +111,17 @@ In this paper, we treat the Query Aspect Diversification as a learning problem a
 
 %On this basis, we redefine the diversity function and derive our loss function as the likelihood loss of ground truth generation. Stochastic gradient descent are employed to optimize the value of features. Finally we derive our ranking function to generate the diverse list sequentially.
 
-We conduct a series of experiments to demonstrate that L-SRD is more effective than other diversification models in terms of the official evaluation metrics including $\alpha$-nDCG, ERR-IA, NRBP  and the classical diversification metrics such as Precision-IA and Aspect Recall (\cite{clarke2008novelty,chapelle2009expected,clarke2009effectiveness}). Additionally, we get a remarkable performance in robust evaluation.
+We conduct a series of experiments to demonstrate that L-SRD is more effective than other diversification models in terms of the official evaluation metrics including $\alpha$-nDCG, ERR-IA, NRBP  and the classical diversification metrics such as Precision-IA and Aspect Recall \cite{clarke2008novelty,chapelle2009expected,clarke2009effectiveness}. Additionally, we get a remarkable performance in robust evaluation.
 
 The main contributions of our work are listed as follows:
 \begin{enumerate}
-	\item L-SRD introduces the learning mechanism to the Query Aspect Diversification model. We conduct inference for the loss function based on its sequential selection model, which solves the parameters tuning problem automatically at the same time.
-	\item We utilize the Markov Random Field to integrate different types of features to address the diversity measurement problem for Query Aspect Search Result Diversification.
-	\item We conduct extensive experiments to verify L-SRD achieve better performance comparing with the existing diversification models.
+	\item L-SRD introduces the learning mechanism to the query aspect diversification model. We conduct inference for the loss function based on its sequential selection model, which solves the parameters tuning problem automatically at the same time.
+	
+	\item We utilize the Markov Random Field to integrate different types of features to address the diversity measurement problem for query aspect search result diversification.
+	
+	\item We propose a sequential prediction method, which selects the best document from candidate set by maximizing ranking score.
+	
+	\item We conduct extensive experiments to verify L-SRD achieve better performance comparing with the existing diversification methods.
 \end{enumerate}
 
 The remainder of this paper is organized as follows. Section \ref{sec_rel} introduces the current research situation on the search result diversification. Section \ref{sec_model} describes the definition of the loss function and the estimation of parameters. Sections \ref{sec_setup} and \ref{sec_expres} detail the experiments setup on the TREC web track and their evaluations. In Section \ref{sec_con}, we summarize our achievements and give future works.
@@ -126,30 +130,29 @@ The remainder of this paper is organized as follows. Section \ref{sec_rel} intro
 
 
 \revised{
-	Search result diversification has a wide range of applications, such as patent search (\cite{Kim:2015:IPS:2808194.2809455}), legal information retrieval (\cite{a10010022}) and so on.
-	The process of diversification can be characterized as a bidirectional optimization problem, in which one seeks to maximize the overall relevance of a document ranking to multiple query aspects, while minimizing its redundancy (\cite{Santos:2010:EQR:1772690.1772780}). In particular, the existing approaches can be categorized as either implicit or explicit making a difference in how they account for the query aspects (\cite{10.1007/978-3-642-12275-0_11}).
+	Search result diversification has a wide range of applications, such as patent search \cite{Kim:2015:IPS:2808194.2809455}, legal information retrieval \cite{a10010022} and so on.
+	The process of diversification can be characterized as a bidirectional optimization problem, in which one seeks to maximize the overall relevance of a document ranking to multiple query aspects, while minimizing its redundancy \cite{Santos:2010:EQR:1772690.1772780}. In particular, the existing approaches can be categorized as either implicit or explicit making a difference in how they account for the query aspects \cite{10.1007/978-3-642-12275-0_11}.
 	}
 
 
 \revised{
- The basic assumption of implicit diversification approaches is that dissimilar documents are more likely to satisfy different information needs. The most representative approach in maximal marginal relevance (MMR) method and its probabilistic variants is shown as follows (\cite{zhai2003beyond}):
+ The basic assumption of implicit diversification approaches is that dissimilar documents are more likely to satisfy different information needs. The most representative approach in maximal marginal relevance (MMR) method and its probabilistic variants is shown as follows \cite{zhai2003beyond}:
 \begin{equation}
 S_{MMR}(q,d,c) = (1-\lambda)S^{rel}(d,q) - \lambda \mathop{}_{d_j \in C}^{max}   S^{div}(d,d_{j})
 \end{equation}
 where $ S^{rel}  $and $ S^{div}  $ represents  document $d's$ relevance to the query $q$ and its similarity to a selected document $d_{j}$ respectively. To gain high ranking score, a document should not only be relevant, but also be dissimilar from the selected documents.
 %Zhu et al. \cite{zhu2007improving} rank sentences using random walks in an absorbing Markov chain and model directed graphs based on the document link structure \cite{zhang2005improving}.
-The special process of MMR proposed by Garbonell \& Goldstein is selecting the document iteratively \cite{carbonell1998use}, and meanwhile, both content-based relevance and diversity relation between current selected document and the previously selected documents are considered. Yu et al. formulate this as a process of selecting and ranking $k$ exemplar documents and utilize linear programming to solve this problem (\cite{Yu:2017:CIL:3018661.3018710}).
-In summary, they are all implicit approaches without using aspects to mine the underlying aspects, besides, they are a low effective approaches (\cite{santos2010exploiting,drosou2010search}).
+The special process of MMR proposed by Garbonell \& Goldstein is selecting the document iteratively \cite{carbonell1998use}, and meanwhile, both content-based relevance and diversity relation between current selected document and the previously selected documents are considered. Yu et al. formulate this as a process of selecting and ranking $k$ exemplar documents and utilize linear programming to solve this problem \cite{Yu:2017:CIL:3018661.3018710}.
+In summary, they are all implicit approaches without using aspects to mine the underlying aspects, besides, they are a low effective approaches \cite{santos2010exploiting,drosou2010search}.
 
 
-Explicit approaches make use of the aspects underlying the query to select documents that cover different aspects as far as possible. The algorithms such as IA-select \cite{agrawal2009diversifying}, xQuAD \cite{santos2010exploiting} and RxQuAD \cite{vargas2012explicit} are proposed to reduce redundancy on the aspect levels. These methods select documents that cover more novel aspects. The PM-1 and PM-2 models pay more attention to maintain the proportionality of aspects \cite{dang2012diversity}. They produce the ranked result according to the proportionality of aspects. Intrinsic diversity products a series of successor queries to figure out the appropriate content to cover (\cite{raman2013toward}). \cite{Wang:2016:ESR:2911451.2911497,Hu15searchresult} think the aspects underlying the query should be hierarchical, and propose some hierarchical measures to find the relationships among aspects.
+Explicit approaches make use of the aspects underlying the query to select documents that cover different aspects as far as possible. The algorithms such as IA-select \cite{agrawal2009diversifying}, xQuAD \cite{santos2010exploiting} and RxQuAD \cite{vargas2012explicit} are proposed to reduce redundancy on the aspect levels. These methods select documents that cover more novel aspects. The PM-1 and PM-2 models pay more attention to maintain the proportionality of aspects \cite{dang2012diversity}. They produce the ranked result according to the proportionality of aspects. Intrinsic diversity products a series of successor queries to figure out the appropriate content to cover \cite{raman2013toward}. \cite{Wang:2016:ESR:2911451.2911497} and \cite{Hu15searchresult} think the aspects underlying the query should be hierarchical, and propose some hierarchical measures to find the relationships among aspects. \cite{Ullah2016QuerySM} mine query subtopic by exploiting the word embedding and short-text similarity measure. 
 To conclude, all existing explicit approaches are unsupervised, and the values of parameters need to be tuned by the experiment repeatedly without intention, causing a time-consuming optimizing problem to find the most suitable parameters.
 
 %Yu et al.\cite{yu2014search} formulized the problem as a 0-1 multiple subtopic knapsack problem.
 
 
-And some learning approaches are proposed. (\cite{zhu2014learning}) use structural SVM to learn to identify a document subset with maximum word coverage, but they just learn the maximum word coverage and do not mine the aspects underlying the query. (\cite{Xia:2015:LMM:2766462.2767710}) utilize both positive and negative ranking documents to train a maximal marginal relevance model for ranking, (\cite{Xia:2016:MDN:2911451.2911498}) propose a neural tensor network to learn a nonlinear novelty function to select document, but they may pay much attention on novelty and less on relevance.
-Our approach accounts for the aspects of a query in an explicit way. However, differently from the existing approaches, we use a learnable process to identify features from documents, which are all positive differing from (\cite{Xia:2015:LMM:2766462.2767710}), using Markov Random Field. Besides, we redefine the diversity function and derive our loss function as the likelihood loss of ground truth generation to resolve this bicriterion optimization problem.}
+Some learning approaches are also proposed for search result diversification. For example, \cite{zhu2014learning} use structural SVM to learn to identify a document subset with maximum word coverage, but they just learn the maximum word coverage and do not mine the aspects underlying the query. \cite{Xia:2015:LMM:2766462.2767710} utilize both positive and negative ranking documents to train a maximal marginal relevance model for ranking. \cite{Xia:2016:MDN:2911451.2911498} propose a neural tensor network to learn a nonlinear novelty function to select document. However, different from the existing approaches, we use a learnable process to identify features from documents using Markov Random Field. Besides, we redefine the diversity function and derive our loss function as the likelihood loss of ground truth generation to resolve this bidirectional optimization problem.}
 
 %focus on the diversity measurement in aspect level and the combination of relevance and diversity. Besides, Markov Random Field (MRF) is used to learn features from documents automatically, which is other than  And  Learning is a good process , due to the learning model, the values of parameters are determined automatically and get optimally.
 
@@ -208,7 +211,7 @@ Our approach accounts for the aspects of a query in an explicit way. However, di
 %
 % We also conducted a experiment to make a comparison between the model using LDA for aspects generation and the model using query suggestion for aspects generation. It has proven that using LDA in our model indeed achieve more stable performance.
 \subsection{Mining aspects underlying the query}\label{mine_aspect}
-The key step for Query Aspects Diversification model is mining the aspects underlying the query. With the help of query aspects, we can generate the diverse ranking list by minimizing the redundancy on the basis of the aspects. We mine the query aspects like (\cite{santos2010exploiting}), issuing the query to the commercial search engine (we use Yahoo) and get back the query suggestion result list as the aspects. Nextly, we can use these aspects as a new query to search the candidate document set $D$ and we can get the relevance score between the aspect $q_i$ and each document $d$ in $D$, which can be formalized as $P(q_i|d)$.
+The key step for Query Aspects Diversification model is mining the aspects underlying the query. With the help of query aspects, we can generate the diverse ranking list by minimizing the redundancy on the basis of the aspects. We mine the query aspects like \cite{santos2010exploiting}, issuing the query to the commercial search engine (we use Yahoo) and get back the query suggestion result list as the aspects. Nextly, we can use these aspects as a new query to search the candidate document set $D$ and we can get the relevance score between the aspect $q_i$ and each document $d$ in $D$, which can be formalized as $P(q_i|d)$.
 
 \iffalse
 There is an illustration in Fig. (\ref{fig_rank}). Now we have already selected two documents $d_1$ and $d_2$, the current step is to consider whether $d_3$ or $d_4$ are more suitable to be added to the selected set, both relevance and diversity need to be considered.
@@ -216,7 +219,7 @@ There is an illustration in Fig. (\ref{fig_rank}). Now we have already selected 
 
 \subsection{Topic diversity model}
 \revised{
-Traditional topic diversity model is a greedy approximation. It sequentially selects the ``local-best" document from the candidate document set (\cite{santos2010exploiting}). The original function is formalized as follows:}
+Traditional topic diversity model is a greedy approximation. It sequentially selects the ``local-best" document from the candidate document set \cite{santos2010exploiting}. The original function is formalized as follows:}
 \begin{equation}
 	f(d, \bar{S})=(1-\lambda)P(d|q)+\lambda\sum_{q_i\in Q}P(q_i|q)P(d|q_i)P(\bar{S}|q_i).
 	\label{eq1}
@@ -236,7 +239,7 @@ As for Eq. (\ref{eq1}), the left part corresponds to the relevance score and the
 	P(\bar{S}|q_i)=\frac{P(\bar{S},q_i)}{P(q_i)}\overset{rank}{=}P(\bar{S},q_i)
 	\label{eq3}
 \end{equation}
-where $P(q_i)$ denotes the occurrence rate of aspects $q_i$ corresponding to query $q$, which is usually regard to be normalized as 1/$n$  ($n$ denotes the number of aspects) (\cite{santos2010exploiting}). Because the values of $P(q_i)$ are equal and do not impact on the result of ranking, we neglect $P(q_i)$.
+where $P(q_i)$ denotes the occurrence rate of aspects $q_i$ corresponding to query $q$, which is usually regard to be normalized as 1/$n$  ($n$ denotes the number of aspects) \cite{santos2010exploiting}. Because the values of $P(q_i)$ are equal and do not impact on the result of ranking, we neglect $P(q_i)$.
 
 %A Markov Random Field (MRF) is an undirected graphical model which possesses a set of random variables with Markov property. The MRF is used to model a joint probability distribution.
 The main concern is how to define feature function for $P(\bar{S}, q_i)$. There are many ways to integrate different features, just like linear regression, logistic regression and some other ways. Under our situation, we use Markov Random Field (MRF) to model $P(\bar{S}, q_i)$. We benefit from its convenient combination of different types of features and we can get its derivation easily.
@@ -288,11 +291,11 @@ Fig. (\ref{MRF}) shows the three types of cliques in MRF. The formal description
 			\item We use the maximal, minimal, standard deviation of the $P(q_i|d)_{d\in \bar{S}}$ as feature functions defined upon clique $l_{sD}$.
 			\item For the sake of minimizing redundancy, we use the $num_{q_i}(\bar{S})-num_{q_i}(S)$ as a feature function defined on this clique too. $num_{q_i}(x)$ represents the number of documents in set $x$ with respect to aspects $q_i$.
 		\end{itemize}
-	\item Based on $l_D$. Both $l_{sd}$ and $l_{sD}$ consider relations of documents with respect to the above two aspects. The clique $l_D$ only takes into account the relations among documents excluding aspects $q_i$. Previous research has shown that the aspect-independent property can indicate the relevance of documents for $q_i$ (\cite{kurland2008rank}).
+	\item Based on $l_D$. Both $l_{sd}$ and $l_{sD}$ consider relations of documents with respect to the above two aspects. The clique $l_D$ only takes into account the relations among documents excluding aspects $q_i$. Previous research has shown that the aspect-independent property can indicate the relevance of documents for $q_i$ \cite{kurland2008rank}.
 		\begin{itemize}
 			\item We use the entropy of all the documents $d$ in $\bar{S}$: \\
 $P_{entropy}(d)\overset{def}{=}-\sum_{w\in d}P(w|d)\log p(w|d)$ as feature function, where $w$ is a term and $p(w|d)$ is the probability that $w$ appears in $d$ (given by the language model).
-			\item Spam ratio inspired by the Web Spam Classification is used for feature function, too (\cite{fetterly2004spam}).
+			\item Spam ratio inspired by the Web Spam Classification is used for feature function, too \cite{fetterly2004spam}.
 		\end{itemize}
 \end{enumerate}
 
@@ -355,7 +358,7 @@ The total loss function is formulized as follows:
 where $T_r$ denotes the number of training examples.
 
 \subsection{Learning and prediction}
-Given the precise definition of loss function, the next step is minimizing the loss function to get the best performance. Firstly, we generate the training data and apply the optimization method. Nextly, we use our ranking function to predict the final diverse ranking result.
+Given the precise definition of loss function, the next step is minimizing the loss function to get the best performance. First, we generate the training data and apply the optimization method. Next, we use our ranking function to predict the final diverse ranking result.
 
 In this study, we use the data in TREC dataset in a format of quadruples: $(q^{(i)}, RD^{(i)}, T_i, J(s_j^{(i)}|t_k))$, where $q^{(i)}$ means the $i$-th query $q$, $RD^{(i)}$ is the corresponding related documents set, $T_i$ represent the aspect underlying the query $q^{(i)}$ which are provided by official labeler, and $J(d_j^{(i)}|t_k)$ represents the judgement factor whether the j-th document $d_j^{(i)}$ in $RD^{(i)}$ covers the aspect $t_k$. Note that the last two elements in quadruples are used to calculate the score of evaluation metrics (e.g. $\alpha$-nDCG), we cannot make use of it directly in our model.
 
@@ -436,7 +439,7 @@ Finally, we propose a sequential prediction method as described in Algorithm \re
 
 
 \subsection{Dataset and evaluation metrics}
-There are 150 queries in our query set, from TREC web track 2009 (WT2009) (\cite{clarke2009preliminary}), WT2010, WT2011(50 for each). Evaluation is done on the ClueWeb09 Category B retrieval collection\footnote{http://www.lemurproject.org/clueweb09.php/}. The collection consists of nearly 50 millions web pages in English. There is a list of aspects for each query with binary relevance judgements, which are provided by TREC assessors.
+There are 150 queries in our query set, from TREC web track 2009 (WT2009) \cite{clarke2009preliminary}, WT2010, WT2011(50 for each). Evaluation is done on the ClueWeb09 Category B retrieval collection\footnote{http://www.lemurproject.org/clueweb09.php/}. The collection consists of nearly 50 millions web pages in English. There is a list of aspects for each query with binary relevance judgements, which are provided by TREC assessors.
 %The goal of diversity task in TREC web track is providing a sorted document list that maximize the coverage of the aspects underlying a query. The krovetz stemmer and stopword removal are applied both in the index and retrieval time.
 %Our query set contains of 150 queries, from TREC web track 2009 (WT2009) \cite{clarke2009preliminary}, TREC web track 2010 (WT2010), TREC web track 2011 (WT2011) (50 for each). Evaluation is done on the ClueWeb09 Category B retrieval collection\footnote{http://www.lemurproject.org/clueweb09.php/}.
 
@@ -453,15 +456,15 @@ There are 150 queries in our query set, from TREC web track 2009 (WT2009) (\cite
 
 
 \revised{
-	There are three mainly evaluation metrics we use to evaluate the performance of our method: $\alpha$-nDCG (\cite{clarke2008novelty}), ERR-IA (\cite{chapelle2009expected}), NRBP (\cite{clarke2009effectiveness}). 
+	There are three mainly evaluation metrics we use to evaluate the performance of our method: $\alpha$-nDCG \cite{clarke2008novelty}, ERR-IA \cite{chapelle2009expected}, NRBP \cite{clarke2009effectiveness}. 
 	$\alpha$-nDCG is used to balance both relevance and diversity of candidate documents. ERR-IA measures the expected effort required for a user to satisfy their information needs. And NRBP is a feasible metric to evaluate the balance between the complexity of needs and the query.
-	These metrics penalize redundancy in a different degree for the document at each sorted position to maximize the aspects coverage. Additionally, we report our result using Precision-IA  and Aspect Recall too. To measure the robustness, we use Win/Loss ratio metrics (\cite{yue2008predicting,dang2012diversity}). The Win/Loss ratio denotes whether the model improve or hurt the result when comparing with the basic relevant baseline QL in terms of evaluation metrics (\cite{dang2012diversity}). Particularly in our experiment, we use ERR-IA to calculate the Win/Loss ratio.
+	These metrics penalize redundancy in a different degree for the document at each sorted position to maximize the aspects coverage. Additionally, we report our result using Precision-IA  and Aspect Recall too. To measure the robustness, we use Win/Loss ratio metrics \cite{yue2008predicting,dang2012diversity}. The Win/Loss ratio denotes whether the model improve or hurt the result when comparing with the basic relevant baseline QL in terms of evaluation metrics \cite{dang2012diversity}. Particularly in our experiment, we use ERR-IA to calculate the Win/Loss ratio.
 	}
 
 
 %215 revised
 \revised{
-	The evaluation metrics are reported at different cutoffs. We use \{5, 10, 20\} as our cutoffs to set up experiments. These cutoffs focus on the evaluation at early ranking, which are particularly important in a Web search context (\cite{jansen1998real}). The $\alpha$ is set to 0.5 in our experiments for the reason it gives equal weight to both relevance and diversity.
+	The evaluation metrics are reported at different cutoffs. We use \{5, 10, 20\} as our cutoffs to set up experiments. These cutoffs focus on the evaluation at early ranking, which are particularly important in a Web search context \cite{jansen1998real}. The $\alpha$ is set to 0.5 in our experiments for the reason it gives equal weight to both relevance and diversity.
 	}
 
 \subsection{Baseline methods}\label{baseline_setting}
@@ -473,21 +476,21 @@ All of the search result diversification methods are applied based on the top-$ 
 
 Besides the baseline retrieval models, we compare L-SRD with some advanced diversification models as follows:
 \begin{itemize}
-    \item \textbf{QL}. The Query-likelihood language model is used for indri search engine as an initial retrieval method. We use it to provide the initial top 1000 documents for our diversification method. We also use it as a baseline method (\cite{dang2012diversity}).
+    \item \textbf{QL}. The Query-likelihood language model is used for indri search engine as an initial retrieval method. We use it to provide the initial top 1000 documents for our diversification method. We also use it as a baseline method \cite{dang2012diversity}.
     
-	\item \textbf{MMR}. A classical implicit diversification model. It is a representation of comparison between implicit and explicit models(\cite{carbonell1998use}).
+	\item \textbf{MMR}. A classical implicit diversification model. It is a representation of comparison between implicit and explicit models\cite{carbonell1998use}.
 	
-	\item \textbf{xQuAD}. xQuAD is a popular explicit diversification model which focuses on the redundancy of aspects (\cite{santos2010exploiting}).
+	\item \textbf{xQuAD}. xQuAD is a popular explicit diversification model which focuses on the redundancy of aspects \cite{santos2010exploiting}.
 	
-	\item \textbf{PM2}. PM2 is a popular explicit diversification model. PM2 generates the result set according to the aspects proportionality (\cite{dang2012diversity}).
+	\item \textbf{PM2}. PM2 is a popular explicit diversification model. PM2 generates the result set according to the aspects proportionality \cite{dang2012diversity}.
 	
-    \item \textbf{SVMDIV}. SVMDIV is also a learning model for search result diversification (\cite{yue2008predicting}). It uses the structural SVMs to optimize the aspects coverage problem. But it only models the diversity without consideration of relevance. We get the source code from the svmdiv homepage\footnote{http://projects.yisongyue.com/svmdiv/} provided by the author.
+    \item \textbf{SVMDIV}. SVMDIV is also a learning model for search result diversification \cite{yue2008predicting}. It uses the structural SVMs to optimize the aspects coverage problem. But it only models the diversity without consideration of relevance. We get the source code from the svmdiv homepage\footnote{http://projects.yisongyue.com/svmdiv/} provided by the author.
     
     \revised{
-    	\item \textbf{HxQuAD} is a hierarchical diversification model based on xQuAD (\cite{Hu15searchresult}).
+    	\item \textbf{HxQuAD} is a hierarchical diversification model based on xQuAD \cite{Hu15searchresult}.
     	}
     
-    \item \textbf{SMWE} mines query subtopic by exploiting the word embedding and short-text similarity measure. (\cite{Ullah2016QuerySM})
+    \item \textbf{SMWE} mines query subtopic by exploiting the word embedding and short-text similarity measure. \cite{Ullah2016QuerySM}
 \end{itemize}
 
 
@@ -526,15 +529,15 @@ In particularly, our experiments aim to answer two main questions:
 % Firstly, there also exisits a variable parameter in L-SRD, which is introduced by the step of aspects generation. We have to preset the number of topics to carry out the next latent topic inference approach. This parameter cannot be put into the learning approach, so we have to design a experiment to find out the most suitable number $LT$ (which means latent topics), and plot the result in Figure \ref{fig5}. We conduct our experiment in TREC web track 2009 (WT2009) in terms of three diversity metrics: ERR-IA, $\alpha$-nDCG and P-IA. The figure illustrates that too little and too much topics both hurt the result in some degree. From the point of mathematical implication, the model with too little topics cannot categorize the documents well, while the model with too much topics split the documents belong to the same category originally. They all hurt the performance of redundancy and proportionality measuring. According to our experiment, $LT = 10$ leads to the best result.
 
 \subsubsection{Diversification analysis}\label{diver_com}
-To answer question 1, we compare our L-SRD with other diversification models in terms of diversification metrics. Table \ref{tab1} shows the result of the evaluation in terms of $\alpha$-nDCG, ERR-IA, and NRBP. The best result per line is highlighted in bold. The classical MMR method is used as a representative of implicit diversification model (\cite{carbonell1998use}). As for explicit model, we consider xQuAD and PM2 (\cite{santos2010exploiting,dang2012diversity}). SVMDIV is selected for the representative of learning methods, HxQuAD is selected for the hierarchical model.
+To answer question 1, we compare our L-SRD with other diversification models in terms of diversification metrics. Table \ref{tab1} shows the result of the evaluation in terms of $\alpha$-nDCG, ERR-IA, and NRBP. The best result per line is highlighted in bold. The classical MMR method is used as a representative of implicit diversification model \cite{carbonell1998use}. As for explicit model, we consider xQuAD and PM2 \cite{santos2010exploiting,dang2012diversity}. SVMDIV is selected for the representative of learning methods, HxQuAD is selected for the hierarchical model.
 
-The result shows that L-SRD always performs best in terms of all metrics. It consistently improves the initial retrieval ranking method with gains up to \revised{23.19\%, 31.17\%, 15.11\%} in terms of $\alpha$-nDCG on WT2009, WT2010, WT2011 respectively. It indicates that our learning approach tackles the diversity measurement problem more effectively with the consideration of integrate different features. The reason is that features such as query-aspects relevance and information richness conform to the property of diversity. Furthermore, comparing with the explicit diversification models in terms of the evaluation of $\alpha$-nDCG, the improvement of L-SRD over the xQuAD is up to \revised{28.44\%, 16.87\%, 14.90\%} on WT2009, WT2010, WT2011 respectively, and the improvement of L-SRD over the PM2 is up to \revised{14.15\%, 23.11\%, 14.65\%} on WT2009, WT2010, WT2011 respectively. Previous explicit diversifications use a predefined function to calculate the diversity score, which cannot reach an optimal result from the overall situation. A learnable approach to solve the diversity measurement and parameter tuning problem is significative. 
+The result shows that L-SRD always performs best in terms of all metrics as shown in Table \ref{tab1}. It consistently improves the initial retrieval ranking method with gains up to \revised{23.19\%, 31.17\%, 15.11\%} in terms of $\alpha$-nDCG on WT2009, WT2010, WT2011 respectively. It indicates that our learning approach tackles the diversity measurement problem more effectively with the consideration of integrate different features. The reason is that features such as query-aspects relevance and information richness conform to the property of diversity. Furthermore, comparing with the explicit diversification models in terms of the evaluation of $\alpha$-nDCG, the improvement of L-SRD over the xQuAD is up to \revised{28.44\%, 16.87\%, 14.90\%} on WT2009, WT2010, WT2011 respectively, and the improvement of L-SRD over the PM2 is up to \revised{14.15\%, 23.11\%, 14.65\%} on WT2009, WT2010, WT2011 respectively. Previous explicit diversifications use a predefined function to calculate the diversity score, which cannot reach an optimal result from the overall situation. A learnable approach to solve the diversity measurement and parameter tuning problem is significative. 
 \revised{
 	In addition, comparing with the hierarchical diversification model in terms of the evaluation of $\alpha$-nDCG, the improvement of L-SRD over the HxQuAD is up to \revised{3.77\%, 9.68\%, 5.49\%} on WT2009, WT2010, WT2011 respectively. HxQuAD only use a predefined function to measure the diversity score, and the parameters may not be optimal because it needs to be tuned manually. Our learning model tackles the parameters tuning problem in an automatic fashion and reaches optimal result.
 	Comparing with SWME in terms of the evaluation of $\alpha$-nDCG, the improvement of L-SRD over the HxQuAD is up to \revised{3.63\%, 5.35\%, 3.86\%} on WT2009, WT2010, WT2011 respectively. SMWE mines enough subtopics, but it cannot learn enough features to represent the document.
 	}Besides the non-learning model, the improvement of L-SRD over the SVMDIV is up to 10.18\%, 14.70\%, 11.09\% on WT2009, WT2010, WT2011 respectively. It shows that considering relevance and different types of features in diversity measurement is helpful in the learning approach. That is the reason why our model wins. %The fact confirms that there exists a gap between utilizing the predefined diversity measure function and introducing feature learning approach in other side.
 %The experimental data confirms that our method not only performs better than existing explicit diversification methods but also performs better than the existing learning method.
-Therefore, L-SRD shows better understanding on the diverse ranking and leads to a better result. So utilizing learning mechanism indeed promotes the performance of search result diversification.
+Therefore, L-SRD shows better understanding on the diverse ranking and leads to a better result. So we find that utilizing learning mechanism indeed promotes the performance of search result diversification.
 
 \begin{table}[!htb]
 \centering
@@ -650,7 +653,7 @@ xQuAD      & 23/18          & 23/16          & 24/14          \\
 PM2        & 22/20          & 26/14          & 25/14          \\
 SVMDIV     & 24/18          & 27/13          & 27/13          \\
 HxQuAD     & 27/15          & 30/10          & 31/10          \\
-SMWE       & 27/14          & 29/10          & 32/11          \\
+SMWE       & 27/14          & 29/11          & 32/11          \\
 L-SRD      & \textbf{28/14} & \textbf{30/10} & \textbf{32/10}  \\
 \hline
 \end{tabular}
@@ -663,7 +666,7 @@ L-SRD      & \textbf{28/14} & \textbf{30/10} & \textbf{32/10}  \\
 
 %From the table \ref{tab3}, we find that our $L-SRD$ model performs best with its ratio of 2.65. It reflects the remarkable robustness of our model comparing with other outstanding diversification models. And it confirms the overall performance of our model is not restricted to a small subset, it still work in the whole dataset. Our introducing different type of features and learning approach address this problem well enough.
 
-From table \ref{tab3}, we find that L-SRD model performs best with its ratio of 2.65. While the Win/Loss ratio of MMR, xQuAD, PM2, SVMDIV, HxQuAD and SMWE is 1.31, 1.46, 1.52, 1.77, 2.51, 2.51 respectively. It reflects the remarkable robustness of L-SRD model comparing with other outstanding diversification models. The promotion of robustness over the MMR, xQuAD, PM2 , SVMDIV, HxQuAD and SMWE is up to 102.28\%, 81.51\%, 74.34\%, 49.72\%, 5.58 \%, 5.58\% respectively. And it confirms the overall performance of our model is not restricted to a small subset, it still works in the whole dataset for three years data. Our different types of features and learning approach address this problem well.
+From table \ref{tab3}, we find that L-SRD model performs best with its ratio of 2.65. While the Win/Loss ratio of MMR, xQuAD, PM2, SVMDIV, HxQuAD and SMWE is 1.31, 1.46, 1.52, 1.77, 2.51, 2.44 respectively. It reflects the remarkable robustness of L-SRD model comparing with other outstanding diversification models. The promotion of robustness over the MMR, xQuAD, PM2 , SVMDIV, HxQuAD and SMWE is up to 102.28\%, 81.51\%, 74.34\%, 49.72\%, 5.58 \%, 8.61\% respectively. And it confirms the overall performance of our model is not restricted to a small subset, it still works in the whole dataset for three years data. Our different types of features and learning approach address this problem well.
 
 
 \iffalse
@@ -733,7 +736,8 @@ This research is supported by National Natural Science Foundation of China (Gran
 
 \section*{References}
 %\bibliographystyle{splncs03}
-\bibliographystyle{model5-names}\biboptions{authoryear}
+%\bibliographystyle{model6-num-names}
+%\biboptions{authoryear}
 \bibliography{test}
 \end{document}
 
